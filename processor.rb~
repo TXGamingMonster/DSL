@@ -42,7 +42,7 @@ class Product
 	end
 
 	def print
-		puts "\nProcessing order for a: #{@name}"
+		puts "Processing order for a: #{@name}"
 		@actions.each do |action|
 			action.print
 		end

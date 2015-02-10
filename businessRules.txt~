@@ -1,0 +1,8 @@
+product 'book'
+action 'Packing slip for shipping'
+action 'Packing slip for royalty_dept'
+action 'Paying commission'
+
+product 'membership'
+action 'pay membership'
+action 'stop membership'
