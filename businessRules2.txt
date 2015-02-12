@@ -1,0 +1,25 @@
+product 'book'
+action 'Packing slip for shipping'
+action 'Packing slip for royalty_dept'
+action 'Paying commission'
+
+product 'ski pass'
+action 'Send email to purchaser@email.com'
+action 'Sending notification to resort'
+
+product 'ski video'
+action 'Packing slip for shipping'
+addon 'First aid video'
+action 'Paying commission'
+
+product 'membership'
+activate
+action 'Send email to member@email.com'
+
+product 'ski boots'
+addon 'Boot fitting discount'
+
+product 'ski helmet'
+action 'Fill out warranty card'
+
+print
