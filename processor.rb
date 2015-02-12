@@ -33,6 +33,10 @@ class Processor
 		end
 	end
 
+	def loadRulesNoRescue fileName
+		load fileName
+	end
+	
 end
 
 class Product

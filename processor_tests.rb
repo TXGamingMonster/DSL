@@ -12,13 +12,14 @@ class TestProcessor < Test::Unit::TestCase
 		assert_respond_to(Processor.instance, :loadRules)
 	end
 	def testFiles
-		#check that bad file throws error
+		#assert invalid file raises error
 		assert_raise NoMethodError do
-			Processor.instance.load "businessRules.txt"
+			Processor.instance.loadRulesNoRescue "businessRules.txt"
 		end
-		#check that valid file throws no error
-		
+		#assert valid file doesn't raise error
+		assert_nothing_raised NoMethodError do
+			Processor.instance.loadRules "businessRules2.txt"
+		end
 	end
-	
 	
 end
