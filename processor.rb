@@ -7,6 +7,10 @@ class Processor
 		@products = []
 	end
 
+	def getProducts
+		return @products
+	end
+	
 	def add_product(product)
 		@products << product
 	end
@@ -28,15 +32,36 @@ class Product
 	
 	def initialize(name)
 		@name = name
-		@actions = []
+		@slips = []
+		@messages = []
+		@payments = []
+		@warranties = []
 		@addons = []
-		if name == 'membership'
-			@active = false
-		end
+		@active = false
 	end
 
-	def add_action(action)
-		@actions << action
+	def getName
+		return @name
+	end
+	
+	def add_slip(slip)
+		@slips << slip
+	end
+	
+	def add_send(email)
+		@messages << email
+	end
+	
+	def add_payment(money)
+		@payments << money
+	end
+	
+	def add_slip(slip)
+		@slips << slip
+	end
+	
+	def add_warranty(war)
+		@warranties << war
 	end
 	
 	def add_addon(addon)
@@ -61,8 +86,24 @@ class Product
 
 	def print
 		puts "\nProcessing order for a: #{@name}"
-		@actions.each do |action|
-			action.print
+		@slips.each do |slip|
+			slip.print
+		end
+		
+		@messages.each do |message|
+			message.print
+		end
+		
+		@payments.each do |payment|
+			payment.print
+		end
+		
+		@warranties.each do |war|
+			war.print
+		end
+		
+		if(@active)
+			puts "---- Activating membership"
 		end
 		
 		puts "*Includes free: " unless @addons.size == 0
@@ -73,7 +114,44 @@ class Product
 
 end
 
-class Action
+class PS
+	attr_reader :text
+
+	def initialize(text)
+		@text = text
+	end
+		
+	def print
+		puts "---- Packing Slip for #{@text}"
+	end
+
+end
+
+class Send
+	attr_reader :text
+
+	def initialize(text)
+		@text = text
+	end
+		
+	def print
+		puts "---- Send #{@text}"
+	end
+end
+
+class Payment
+	attr_reader :text
+
+	def initialize(text)
+		@text = text
+	end
+		
+	def print
+		puts "---- Pay #{@text}"
+	end
+end
+
+class Warranty
 	attr_reader :text
 
 	def initialize(text)
@@ -83,7 +161,6 @@ class Action
 	def print
 		puts "---- #{@text}"
 	end
-
 end
 
 class Addon
@@ -103,21 +180,78 @@ def product(name)
 	Processor.instance.add_product Product.new(name)
 end
 
-def action(text)
-	Processor.instance.last_product.add_action Action.new(text)
+def packing_slip(text)
+	if Processor.instance.last_product
+		Processor.instance.last_product.add_slip PS.new(text)
+	else
+		puts "Product was not defined"
+	end
+end
+
+def send(text)
+	if Processor.instance.last_product
+		Processor.instance.last_product.add_send Send.new(text)
+	else
+		puts "Product was not defined"
+	end
+end
+
+def pay(text)
+	if Processor.instance.last_product
+		Processor.instance.last_product.add_payment Payment.new(text)
+	else
+		puts "Product was not defined"
+	end
 end
 
 def addon(text)
-	Processor.instance.last_product.add_addon Addon.new(text)
+	if Processor.instance.last_product
+		Processor.instance.last_product.add_addon Addon.new(text)
+	else
+		puts "Product was not defined"
+	end
+end
+
+def warranty(text)
+	if Processor.instance.last_product
+		Processor.instance.last_product.add_warranty Warranty.new(text)
+	else
+		puts "Product was not defined"
+	end
 end
 
 def activate
-	Processor.instance.last_product.set_activate(true)
+	if Processor.instance.last_product
+		Processor.instance.last_product.set_activate(true)
+	else
+		puts "Product was not defined"
+	end
 end
 
-def print
+def printProcessor
 	Processor.instance.print
 end
 
-load 'businessRules2.txt'
+def play
+	str = ""
+	while str != "quit"
+		print "\nEnter Product Type or \'quit\' to end: "
+		str = gets.chomp.downcase
+		boo = false
+		Processor.instance.getProducts.each do |i|
+			if str == i.getName
+				i.print
+				boo = true
+			end
+		end
+		if !boo && str != "quit"
+			puts "Not a Valid Product"
+		end
+	end
+end
 
+begin
+load 'businessRules2.txt'
+rescue NoMethodError
+	puts "Undefined Method"
+end

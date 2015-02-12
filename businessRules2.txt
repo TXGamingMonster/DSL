@@ -1,25 +1,31 @@
 product 'book'
 packing_slip 'Shipping'
-packing_slip 'Royalty_dept'
+packing_slip 'Royalty Dept.'
 pay 'Commission'
 
+product 'rewards card'
+send 'Email to Purchaser'
+addon 'Month of Amazon Prime'
+addon 'Discount on Snowboard Rentals'
+activate
+
 product 'ski pass'
-send 'Email to purchaser'
-send 'Notification to resort'
+send 'Email to Purchaser'
+send 'Notification to Resort'
 
 product 'ski video'
 packing_slip 'Shipping'
-addon 'First aid video'
+addon 'First Aid Video'
 pay 'Commission'
 
 product 'membership'
 activate
-send 'Email to new member
+send 'Email to New Member'
 
 product 'ski boots'
-addon 'Boot fitting discount'
+addon 'Boot Fitting Discount'
 
 product 'ski helmet'
 warranty 'Fill card'
 
-print
+play
