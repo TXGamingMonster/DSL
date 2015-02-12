@@ -4,14 +4,14 @@ packing_slip 'Royalty Dept.'
 pay 'Commission'
 
 product 'rewards card'
-send 'Email to Purchaser'
+mail 'Email to Purchaser'
 addon 'Month of Amazon Prime'
 addon 'Discount on Snowboard Rentals'
 activate
 
 product 'ski pass'
-send 'Email to Purchaser'
-send 'Notification to Resort'
+mail 'Email to Purchaser'
+mail 'Notification to Resort'
 
 product 'ski video'
 packing_slip 'Shipping'
@@ -20,7 +20,7 @@ pay 'Commission'
 
 product 'membership'
 activate
-send 'Email to New Member'
+mail 'Email to New Member'
 
 product 'ski boots'
 addon 'Boot Fitting Discount'

@@ -24,6 +24,14 @@ class Processor
 			product.print
 		end
 	end
+	
+	def loadRules fileName
+		begin
+		load fileName
+		rescue NoMethodError
+			puts "Undefined Method"
+		end
+	end
 
 end
 
@@ -188,7 +196,7 @@ def packing_slip(text)
 	end
 end
 
-def send(text)
+def mail(text)
 	if Processor.instance.last_product
 		Processor.instance.last_product.add_send Send.new(text)
 	else
@@ -248,10 +256,4 @@ def play
 			puts "Not a Valid Product"
 		end
 	end
-end
-
-begin
-load 'businessRules2.txt'
-rescue NoMethodError
-	puts "Undefined Method"
 end
