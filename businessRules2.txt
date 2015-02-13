@@ -27,5 +27,3 @@ addon 'Boot Fitting Discount'
 
 product 'ski helmet'
 warranty 'Fill card'
-
-play

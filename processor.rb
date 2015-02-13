@@ -27,9 +27,10 @@ class Processor
 	
 	def loadRules fileName
 		begin
+		puts "\nLoading \"#{fileName}\""
 		load fileName
 		rescue NoMethodError
-			puts "Undefined Method"
+			puts "Error: Undefined Method, aborting..."
 		end
 	end
 

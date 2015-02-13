@@ -14,7 +14,7 @@ class TestProcessor < Test::Unit::TestCase
 	def testFiles
 		#assert invalid file raises error
 		assert_raise NoMethodError do
-			Processor.instance.loadRulesNoRescue "businessRules.txt"
+			Processor.instance.loadRulesNoRescue "badRules.txt"
 		end
 		#assert valid file doesn't raise error
 		assert_nothing_raised NoMethodError do
